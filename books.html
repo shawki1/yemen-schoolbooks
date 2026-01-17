@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكتب الدراسية - المنصة التعليمية اليمنية</title>
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #8b5cf6;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .book-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            height: 100%;
+            margin-bottom: 20px;
+            background: white;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .book-cover {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .book-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .book-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .book-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .reset-btn {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+        
+        .reset-btn:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            margin-top: 3rem;
+            padding: 2rem 0;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .book-cover {
+                height: 180px;
+            }
+            
+            .book-card h5 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-graduation-cap me-2"></i>
+                المنصة التعليمية اليمنية
+            </a>
+            <a href="../index.html" class="btn btn-outline-light">
+                <i class="fas fa-arrow-right me-1"></i> العودة للرئيسية
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- رأس الصفحة -->
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="display-5 fw-bold text-primary mb-3">📚 المكتبة الرقمية</h1>
+                <p class="lead text-muted">جميع الكتب الدراسية والمراجع التعليمية للصفوف من الأول إلى الثالث الثانوي</p>
+            </div>
+        </div>
+
+        <!-- إحصائيات -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-info border-0 shadow-sm">
+                    <div class="row text-center">
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <h4 class="fw-bold">150+</h4>
+                            <p class="mb-0">كتاب مدرسي</p>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <h4 class="fw-bold">50+</h4>
+                            <p class="mb-0">مرجع تعليمي</p>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <h4 class="fw-bold">12</h4>
+                            <p class="mb-0">مادة دراسية</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 class="fw-bold">6</h4>
+                            <p class="mb-0">مستويات دراسية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- فلاتر -->
+        <div class="filter-section">
+            <div class="row align-items-end">
+                <div class="col-md-3 mb-3">
+                    <label for="gradeFilter" class="form-label fw-bold">اختر الصف:</label>
+                    <select class="form-select" id="gradeFilter">
+                        <option value="">جميع الصفوف</option>
+                        <option value="1">الصف الأول</option>
+                        <option value="2">الصف الثاني</option>
+                        <option value="3">الصف الثالث</option>
+                        <option value="4">الصف الرابع</option>
+                        <option value="5">الصف الخامس</option>
+                        <option value="6">الصف السادس</option>
+                        <option value="7">الصف السابع</option>
+                        <option value="8">الصف الثامن</option>
+                        <option value="9">الصف التاسع</option>
+                        <option value="10">الصف الأول الثانوي</option>
+                        <option value="11">الصف الثاني الثانوي</option>
+                        <option value="12">الصف الثالث الثانوي</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="subjectFilter" class="form-label fw-bold">اختر المادة:</label>
+                    <select class="form-select" id="subjectFilter">
+                        <option value="">جميع المواد</option>
+                        <option value="qran">القرآن الكريم</option>
+                        <option value="islamic">التربية الإسلامية</option>
+                        <option value="arabic">اللغة العربية</option>
+                        <option value="math">الرياضيات</option>
+                        <option value="science">العلوم</option>
+                        <option value="fysya">فيزياء</option>
+                        <option value="keamya">كيمياء</option>
+                        <option value="ahya">أحياء</option>
+                        <option value="en">الإنجليزية</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="searchInput" class="form-label fw-bold">بحث في الكتب:</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="ابحث عن كتاب..." id="searchInput">
+                    </div>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <button class="btn reset-btn w-100" onclick="booksManager.resetFilters()">
+                        <i class="fas fa-redo me-1"></i> إعادة تعيين
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- شبكة الكتب -->
+        <div class="row" id="booksGrid">
+            <!-- سيتم تعبئة الكتب هنا -->
+        </div>
+        
+        <!-- رسالة عند عدم وجود نتائج -->
+        <div id="noResults" class="d-none">
+            <div class="col-12 text-center py-5">
+                <div class="alert alert-info border-0 shadow-sm">
+                    <i class="fas fa-book fa-3x mb-3 text-muted"></i>
+                    <h4 class="text-muted">لا توجد كتب تطابق معايير البحث</h4>
+                    <p class="text-muted mb-0">حاول تغيير الفلاتر أو البحث بكلمات مختلفة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="text-center mb-0">جميع الحقوق محفوظة © المنصة التعليمية اليمنية 2024</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/books.js"></script>
+</body>
+</html>

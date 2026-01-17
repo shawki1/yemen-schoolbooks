@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المواد الدراسية - المنصة التعليمية اليمنية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* تنسيق قسم Telegram */
+        .telegram-section {
+            background: linear-gradient(135deg, #0088cc 0%, #1e96c8 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        }
+        
+        .telegram-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .telegram-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .telegram-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .feature-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #34b7f1;
+        }
+        
+        .telegram-btn {
+            background: white;
+            color: #0088cc;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: #0088cc;
+        }
+        
+        .guide-steps {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-number {
+            background: white;
+            color: #0088cc;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+        
+        /* تنسيق قسم التعليقات */
+        .comments-section {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .comment-card {
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .comment-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .comment-meta {
+            flex-grow: 1;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        
+        .comment-identity {
+            font-size: 0.75rem;
+            color: #6c757d;
+            background-color: #e9ecef;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 0.2rem;
+        }
+        
+        .comment-date {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .comment-rating {
+            color: #ffc107;
+        }
+        
+        .comment-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .identity-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .identity-option {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .identity-option input[type="radio"] {
+            display: none;
+        }
+        
+        .identity-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        
+        .identity-option label i {
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .identity-option input[type="radio"]:checked + label {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        .identity-option input[type="radio"]:checked + label i {
+            color: #4CAF50;
+        }
+        
+        .identity-details {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .identity-details.active {
+            display: block;
+        }
+        
+        .google-btn {
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .google-btn:hover {
+            background-color: #357ae8;
+            transform: translateY(-2px);
+        }
+        
+        .star-rating {
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+        
+        .star-rating input {
+            display: none;
+        }
+        
+        .star-rating label {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .star-rating input:checked ~ label {
+            color: #ddd;
+        }
+        
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label:hover,
+        .star-rating input:checked ~ label:hover ~ label {
+            color: #ffc107;
+        }
+        
+        .btn-submit-comment {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn-submit-comment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .no-comments {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+        }
+        
+        .no-comments i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #dee2e6;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .avatar-anonymous {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .avatar-google {
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+        }
+        
+        .avatar-named {
+            background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%);
+        }
+        
+        .identity-badge {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            margin-right: 0.5rem;
+        }
+        
+        .badge-anonymous {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .badge-google {
+            background-color: #4285F4;
+            color: white;
+        }
+        
+        .badge-named {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .telegram-notice {
+            background: linear-gradient(135deg, #e8f5ff 0%, #d1ecff 100%);
+            border: 2px solid #0088cc;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .telegram-notice i {
+            color: #0088cc;
+        }
+        
+        .telegram-stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-item {
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* تنسيق جديد للتحكم في التعليقات */
+        .comments-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .show-comments-btn {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .show-comments-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+        }
+        
+        .show-comments-btn.active {
+            background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%);
+        }
+        
+        .comments-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .comments-container.hidden {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .comments-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .comments-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .comments-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        
+        .comments-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .recent-comments-label {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .comments-count {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../images/٢٠٢٥١١٢٢_٢١٣٤٤٠.jpg" alt="شعار الموقع" width="40" height="40" class="d-inline-block align-text-top">
+                المنصة التعليمية اليمنية
+            </a>
+            <a href="../index.html" class="btn btn-outline-light"> العودة للرئيسية</a>
+        </div>
+    </nav>
+
+    <!-- محتوى الصفحة -->
+    <div class="container mt-4">
+        <!-- عنوان الصفحة -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 id="gradeTitle" class="text-center">المستوى الدراسي</h1>
+                <p class="text-center text-muted" id="gradeDescription">اختر المادة التي تريد دراستها</p>
+            </div>
+        </div>
+
+        <!-- شبكة المواد -->
+        <div class="row" id="subjectsGrid">
+            <!-- سيتم تعبئة المواد هنا بالجافاسكريبت -->
+        </div>
+
+        <!-- قسم Telegram -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="telegram-section">
+                    <div class="text-center mb-4">
+                        <div class="telegram-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h2>📚 قناة Telegram الرسمية</h2>
+                        <p class="lead">انضم لقناتنا على Telegram واحصل على جميع الكتب الدراسية</p>
+                    </div>
+                    
+                    <div class="telegram-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h4><i class="fas fa-download me-2"></i>تحميل سريع وسهل</h4>
+                                <p>كل الكتب الدراسية متاحة على قناتنا في Telegram:</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle me-2 text-success"></i> كتب جميع الصفوف الدراسية</li>
+                                    <li><i class="fas fa-check-circle me-2 text-success"></i> تحديثات فورية للمناهج</li>
+                                    <li><i class="fas fa-check-circle me-2 text-success"></i> دعم مباشر واستفسارات</li>
+                                    <li><i class="fas fa-check-circle me-2 text-success"></i> مراجعات واختبارات</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="feature-item mb-3">
+                                    <i class="fas fa-book-open"></i>
+                                    <p>كتب PDF</p>
+                                </div>
+                                <a href="https://t.me/+CyFmf-j-WG820GQ0" target="_blank" class="telegram-btn w-100">
+                                    <i class="fab fa-telegram"></i>
+                                    انضم للقناة الآن
+                                </a>
+                                <p class="mt-2 mb-0">
+                                    <small>اسم القناة:</small><br>
+                                    <code class="text-white">@YemenEduPlatform</code>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- إحصائيات -->
+                        <div class="telegram-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="telegramMembers">500+</span>
+                                <span class="stat-label">طالب</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="telegramBooks">150+</span>
+                                <span class="stat-label">كتاب</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="telegramUpdates">يومياً</span>
+                                <span class="stat-label">تحديث</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- دليل الانضمام -->
+                    <div class="guide-steps">
+                        <h5><i class="fas fa-lightbulb me-2"></i>كيف تنضم وتستفيد؟</h5>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h6>انضم للقناة</h6>
+                                <p>اضغط على زر "انضم للقناة الآن"</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h6>ابحث عن الكتب</h6>
+                                <p>استخدم خانة البحث في القناة للعثور على الكتب</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h6>حمّل مباشرة</h6>
+                                <p>اضغط على أي كتاب لتحميله فوراً</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div>
+                                <h6>شارك تجربتك</h6>
+                                <p>عد هنا وأضف تقييمك للكتب بعد تجربتها</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم التعليقات -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="comments-section">
+                    <!-- إشعار Telegram -->
+                    <div class="telegram-notice">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-telegram fa-2x me-3"></i>
+                            <div>
+                                <strong>تنويه:</strong> ننصح بتحميل الكتب من قناتنا على Telegram أولاً لتجربتها قبل التقييم
+                                <a href="https://t.me/+CyFmf-j-WG820GQ0" target="_blank" class="ms-2 fw-bold">@YemenEduPlatform</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mb-4 text-center">
+                        <i class="fas fa-comments me-2"></i>
+                        آراء وتقييمات الطلاب
+                    </h3>
+                    
+                    <!-- إحصائيات التعليقات -->
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-center">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body">
+                                    <h2 class="text-primary" id="totalComments">0</h2>
+                                    <p class="text-muted mb-0">إجمالي التعليقات</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body">
+                                    <h2 class="text-warning" id="averageRating">0.0</h2>
+                                    <p class="text-muted mb-0">متوسط التقييم</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body">
+                                    <h2 class="text-success" id="todayComments">0</h2>
+                                    <p class="text-muted mb-0">تعليقات اليوم</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- تحكم في عرض التعليقات -->
+                    <div class="comments-controls">
+                        <div>
+                            <span class="recent-comments-label">التعليقات السابقة:</span>
+                            <span class="comments-count" id="commentsCount">0</span>
+                        </div>
+                        <button class="btn show-comments-btn" id="toggleCommentsBtn">
+                            <i class="fas fa-eye"></i>
+                            <span>عرض التعليقات</span>
+                        </button>
+                    </div>
+                    
+                    <!-- حاوية التعليقات (يمكن إخفاؤها/إظهارها) -->
+                    <div class="comments-container hidden" id="commentsContainer">
+                        <!-- قائمة التعليقات -->
+                        <div id="commentsList" class="mb-4">
+                            <!-- سيتم عرض التعليقات هنا -->
+                            <div class="no-comments">
+                                <i class="fas fa-comment-slash"></i>
+                                <p>لا توجد تعليقات حتى الآن. كن أول من يشارك رأيه!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- نموذج إضافة تعليق -->
+                    <div class="comment-form">
+                        <h4 class="mb-3">أضف تعليقك</h4>
+                        <form id="commentForm">
+                            <!-- اختيار هوية التعليق -->
+                            <div class="mb-3">
+                                <label class="form-label">اختر طريقة التعليق</label>
+                                <div class="identity-options">
+                                    <div class="identity-option">
+                                        <input type="radio" id="identityAnonymous" name="identity" value="anonymous" checked>
+                                        <label for="identityAnonymous">
+                                            <i class="fas fa-user-secret"></i>
+                                            مجهول
+                                        </label>
+                                    </div>
+                                    <div class="identity-option">
+                                        <input type="radio" id="identityGoogle" name="identity" value="google">
+                                        <label for="identityGoogle">
+                                            <i class="fab fa-google"></i>
+                                            حساب Google
+                                        </label>
+                                    </div>
+                                    <div class="identity-option">
+                                        <input type="radio" id="identityNamed" name="identity" value="named">
+                                        <label for="identityNamed">
+                                            <i class="fas fa-user"></i>
+                                            بالاسم
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- تفاصيل الهوية (تظهر حسب الاختيار) -->
+                            <div class="identity-details" id="anonymousDetails">
+                                <p class="text-muted small">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    سيظهر تعليقك كـ "مجهول" بدون ذكر اسمك
+                                </p>
+                            </div>
+                            
+                            <div class="identity-details" id="googleDetails">
+                                <p class="text-muted small mb-2">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    سجل الدخول باستخدام حساب Google الخاص بك
+                                </p>
+                                <button type="button" class="btn google-btn w-100" id="googleLoginBtn">
+                                    <i class="fab fa-google"></i>
+                                    تسجيل الدخول بحساب Google
+                                </button>
+                                <div class="mt-2" id="googleUserInfo"></div>
+                            </div>
+                            
+                            <div class="identity-details" id="namedDetails">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="commentName" class="form-label">اسمك *</label>
+                                        <input type="text" class="form-control" id="commentName" placeholder="أدخل اسمك">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="commentEmail" class="form-label">البريد الإلكتروني (اختياري)</label>
+                                        <input type="email" class="form-control" id="commentEmail" placeholder="example@email.com">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- التقييم -->
+                            <div class="mb-3">
+                                <label class="form-label">التقييم *</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5" name="rating" value="5">
+                                    <label for="star5" title="ممتاز">★</label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4" title="جيد جداً">★</label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3" title="جيد">★</label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2" title="مقبول">★</label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1" title="ضعيف">★</label>
+                                </div>
+                            </div>
+                            
+                            <!-- نص التعليق -->
+                            <div class="mb-3">
+                                <label for="commentText" class="form-label">التعليق *</label>
+                                <textarea class="form-control" id="commentText" rows="4" required 
+                                          placeholder="شاركنا رأيك حول المادة الدراسية..."></textarea>
+                                <div class="form-text">يرجى كتابة تعليق مفيد (على الأقل 10 أحرف)</div>
+                            </div>
+                            
+                            <!-- زر الإرسال -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-submit-comment">
+                                    <i class="fas fa-paper-plane me-2"></i>إرسال التعليق
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>جميع الحقوق محفوظة © المنصة التعليمية اليمنية 2026</p>
+            <div class="mt-2">
+                <a href="https://t.me/YemenEduPlatform" target="_blank" class="text-white me-3">
+                    <i class="fab fa-telegram fa-lg"></i> انضم لقناتنا على Telegram
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/grades.js"></script>
+    
+    <script>
+        // نظام إدارة Telegram
+        class TelegramManager {
+            constructor() {
+                this.channelUsername = '@YemenEduPlatform';
+                this.channelUrl = 'https://t.me/YemenEduPlatform';
+                this.init();
+            }
+            
+            init() {
+                this.setupTelegramButton();
+                this.setupTelegramNotice();
+                this.updateTelegramStats();
+                this.animateTelegramNumbers();
+            }
+            
+            setupTelegramButton() {
+                const telegramBtns = document.querySelectorAll('.telegram-btn, .telegram-notice a');
+                telegramBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.trackTelegramClick();
+                        window.open(this.channelUrl, '_blank');
+                        this.showTelegramMessage('جارٍ فتح قناة Telegram...');
+                    });
+                });
+            }
+            
+            setupTelegramNotice() {
+                const notice = document.querySelector('.telegram-notice');
+                if (notice) {
+                    notice.addEventListener('mouseenter', () => {
+                        notice.style.transform = 'translateY(-5px)';
+                        notice.style.transition = 'transform 0.3s ease';
+                    });
+                    
+                    notice.addEventListener('mouseleave', () => {
+                        notice.style.transform = 'translateY(0)';
+                    });
+                }
+            }
+            
+            trackTelegramClick() {
+                let clicks = localStorage.getItem('telegram_clicks') || 0;
+                clicks = parseInt(clicks) + 1;
+                localStorage.setItem('telegram_clicks', clicks);
+                this.updateClickCounter();
+            }
+            
+            updateTelegramStats() {
+                this.updateClickCounter();
+            }
+            
+            updateClickCounter() {
+                const clicks = localStorage.getItem('telegram_clicks') || 0;
+                if (clicks > 0) {
+                    console.log(`تم النقر على رابط Telegram ${clicks} مرة`);
+                }
+            }
+            
+            animateTelegramNumbers() {
+                const membersElement = document.getElementById('telegramMembers');
+                const booksElement = document.getElementById('telegramBooks');
+                
+                if (membersElement) {
+                    this.animateNumber(membersElement, 500, 1000);
+                }
+                if (booksElement) {
+                    this.animateNumber(booksElement, 150, 1000);
+                }
+            }
+            
+            animateNumber(element, target, duration) {
+                let start = 0;
+                const increment = target / (duration / 16);
+                const timer = setInterval(() => {
+                    start += increment;
+                    if (start >= target) {
+                        element.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(start) + '+';
+                    }
+                }, 16);
+            }
+            
+            showTelegramMessage(message) {
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+                alertDiv.innerHTML = `
+                    <i class="fab fa-telegram me-2"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                
+                const telegramSection = document.querySelector('.telegram-section');
+                telegramSection.appendChild(alertDiv);
+                
+                setTimeout(() => {
+                    if (alertDiv.parentElement) {
+                        alertDiv.remove();
+                    }
+                }, 3000);
+            }
+        }
+
+        // نظام التعليقات المتقدم مع التحكم في العرض
+        class CommentsManager {
+            constructor() {
+                this.comments = this.loadComments();
+                this.currentUser = this.getCurrentUser();
+                this.areCommentsVisible = false; // حالة عرض التعليقات
+                this.init();
+            }
+            
+            init() {
+                this.setupCommentsToggle();
+                this.displayComments();
+                this.setupForm();
+                this.setupIdentitySwitcher();
+                this.updateStats();
+            }
+            
+            setupCommentsToggle() {
+                const toggleBtn = document.getElementById('toggleCommentsBtn');
+                const commentsContainer = document.getElementById('commentsContainer');
+                
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', () => {
+                        this.toggleCommentsVisibility();
+                    });
+                }
+                
+                // حفظ حالة العرض في localStorage
+                const savedState = localStorage.getItem('commentsVisible');
+                if (savedState === 'true') {
+                    this.showComments();
+                }
+            }
+            
+            toggleCommentsVisibility() {
+                if (this.areCommentsVisible) {
+                    this.hideComments();
+                } else {
+                    this.showComments();
+                }
+            }
+            
+            showComments() {
+                const commentsContainer = document.getElementById('commentsContainer');
+                const toggleBtn = document.getElementById('toggleCommentsBtn');
+                
+                if (commentsContainer && toggleBtn) {
+                    commentsContainer.classList.remove('hidden');
+                    toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i><span>إخفاء التعليقات</span>';
+                    toggleBtn.classList.add('active');
+                    this.areCommentsVisible = true;
+                    
+                    // حفظ الحالة
+                    localStorage.setItem('commentsVisible', 'true');
+                    
+                    // تمرير سلس إلى التعليقات
+                    setTimeout(() => {
+                        commentsContainer.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 300);
+                }
+            }
+            
+            hideComments() {
+                const commentsContainer = document.getElementById('commentsContainer');
+                const toggleBtn = document.getElementById('toggleCommentsBtn');
+                
+                if (commentsContainer && toggleBtn) {
+                    commentsContainer.classList.add('hidden');
+                    toggleBtn.innerHTML = '<i class="fas fa-eye"></i><span>عرض التعليقات</span>';
+                    toggleBtn.classList.remove('active');
+                    this.areCommentsVisible = false;
+                    
+                    // حفظ الحالة
+                    localStorage.setItem('commentsVisible', 'false');
+                }
+            }
+            
+            loadComments() {
+                try {
+                    const savedComments = localStorage.getItem('educationalPlatformComments');
+                    return savedComments ? JSON.parse(savedComments) : [];
+                } catch (error) {
+                    console.error('❌ خطأ في تحميل التعليقات:', error);
+                    return [];
+                }
+            }
+            
+            saveComments() {
+                try {
+                    localStorage.setItem('educationalPlatformComments', JSON.stringify(this.comments));
+                } catch (error) {
+                    console.error('❌ خطأ في حفظ التعليقات:', error);
+                }
+            }
+            
+            getCurrentUser() {
+                try {
+                    const user = localStorage.getItem('educationalPlatformUser');
+                    return user ? JSON.parse(user) : null;
+                } catch (error) {
+                    return null;
+                }
+            }
+            
+            saveUser(userData) {
+                try {
+                    localStorage.setItem('educationalPlatformUser', JSON.stringify(userData));
+                    this.currentUser = userData;
+                } catch (error) {
+                    console.error('❌ خطأ في حفظ بيانات المستخدم:', error);
+                }
+            }
+            
+            setupIdentitySwitcher() {
+                const identityRadios = document.querySelectorAll('input[name="identity"]');
+                const detailsDivs = document.querySelectorAll('.identity-details');
+                
+                identityRadios.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const selectedValue = e.target.value;
+                        
+                        detailsDivs.forEach(div => div.classList.remove('active'));
+                        document.getElementById(`${selectedValue}Details`).classList.add('active');
+                        
+                        if (selectedValue === 'google' && this.currentUser?.provider === 'google') {
+                            this.showGoogleUserInfo();
+                        }
+                    });
+                });
+                
+                document.getElementById('googleLoginBtn')?.addEventListener('click', () => {
+                    this.simulateGoogleLogin();
+                });
+                
+                document.getElementById('anonymousDetails').classList.add('active');
+            }
+            
+            simulateGoogleLogin() {
+                const googleUser = {
+                    name: "طالب مجتهد",
+                    email: "student@example.com",
+                    picture: null,
+                    provider: 'google'
+                };
+                
+                this.saveUser(googleUser);
+                this.showGoogleUserInfo();
+                this.showAlert('تم تسجيل الدخول بنجاح باستخدام Google!', 'success');
+            }
+            
+            showGoogleUserInfo() {
+                const userInfoDiv = document.getElementById('googleUserInfo');
+                if (this.currentUser?.provider === 'google') {
+                    userInfoDiv.innerHTML = `
+                        <div class="alert alert-success p-2 mb-0">
+                            <i class="fas fa-check-circle me-2"></i>
+                            مسجل الدخول كـ <strong>${this.currentUser.name}</strong>
+                            <button type="button" class="btn btn-sm btn-outline-danger float-start" onclick="commentsManager.logoutGoogle()">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+            
+            logoutGoogle() {
+                localStorage.removeItem('educationalPlatformUser');
+                this.currentUser = null;
+                document.getElementById('googleUserInfo').innerHTML = '';
+                this.showAlert('تم تسجيل الخروج بنجاح', 'info');
+            }
+            
+            displayComments() {
+                const commentsList = document.getElementById('commentsList');
+                const commentsCount = document.getElementById('commentsCount');
+                
+                if (!commentsList) return;
+                
+                // تحديث عداد التعليقات
+                if (commentsCount) {
+                    commentsCount.textContent = this.comments.length;
+                }
+                
+                if (this.comments.length === 0) {
+                    commentsList.innerHTML = `
+                        <div class="no-comments">
+                            <i class="fas fa-comment-slash"></i>
+                            <p>لا توجد تعليقات حتى الآن. كن أول من يشارك رأيه!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // عرض التعليقات من الأحدث إلى الأقدم
+                const sortedComments = [...this.comments].reverse();
+                
+                // عرض أول 5 تعليقات فقط مع إمكانية عرض البقية
+                const displayedComments = sortedComments;
+                
+                commentsList.innerHTML = displayedComments.map(comment => `
+                    <div class="card comment-card">
+                        <div class="card-body">
+                            <div class="comment-header">
+                                <div class="comment-avatar ${this.getAvatarClass(comment.identity)}">
+                                    ${this.getAvatarInitial(comment)}
+                                </div>
+                                <div class="comment-meta">
+                                    <h6 class="comment-author">
+                                        ${comment.displayName}
+                                        <span class="identity-badge ${this.getBadgeClass(comment.identity)}">
+                                            ${this.getIdentityLabel(comment.identity)}
+                                        </span>
+                                    </h6>
+                                    <small class="comment-date">
+                                        <i class="far fa-clock me-1"></i>
+                                        ${this.formatDate(comment.date)}
+                                    </small>
+                                </div>
+                                <div class="comment-rating">
+                                    ${this.generateStars(comment.rating)}
+                                </div>
+                            </div>
+                            <p class="card-text mt-2">${comment.text}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            getAvatarClass(identity) {
+                switch(identity) {
+                    case 'anonymous': return 'avatar-anonymous';
+                    case 'google': return 'avatar-google';
+                    case 'named': return 'avatar-named';
+                    default: return 'avatar-anonymous';
+                }
+            }
+            
+            getBadgeClass(identity) {
+                switch(identity) {
+                    case 'anonymous': return 'badge-anonymous';
+                    case 'google': return 'badge-google';
+                    case 'named': return 'badge-named';
+                    default: return 'badge-anonymous';
+                }
+            }
+            
+            getIdentityLabel(identity) {
+                switch(identity) {
+                    case 'anonymous': return 'مجهول';
+                    case 'google': return 'Google';
+                    case 'named': return 'بالاسم';
+                    default: return 'مجهول';
+                }
+            }
+            
+            getAvatarInitial(comment) {
+                if (comment.identity === 'anonymous') {
+                    return 'م';
+                } else if (comment.identity === 'google' && comment.name) {
+                    return comment.name.charAt(0).toUpperCase();
+                } else if (comment.identity === 'named' && comment.name) {
+                    return comment.name.charAt(0).toUpperCase();
+                }
+                return '?';
+            }
+            
+            generateStars(rating) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        stars += '<i class="fas fa-star"></i>';
+                    } else {
+                        stars += '<i class="far fa-star"></i>';
+                    }
+                }
+                return stars;
+            }
+            
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                const now = new Date();
+                const diffMs = now - date;
+                const diffMins = Math.floor(diffMs / 60000);
+                const diffHours = Math.floor(diffMs / 3600000);
+                const diffDays = Math.floor(diffMs / 86400000);
+                
+                if (diffMins < 60) {
+                    return `قبل ${diffMins} دقيقة`;
+                } else if (diffHours < 24) {
+                    return `قبل ${diffHours} ساعة`;
+                } else if (diffDays < 7) {
+                    return `قبل ${diffDays} يوم`;
+                } else {
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    return new Intl.DateTimeFormat('ar-SA', options).format(date);
+                }
+            }
+            
+            setupForm() {
+                const form = document.getElementById('commentForm');
+                if (!form) return;
+                
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addComment();
+                });
+            }
+            
+            addComment() {
+                const identity = document.querySelector('input[name="identity"]:checked').value;
+                const rating = document.querySelector('input[name="rating"]:checked')?.value;
+                const text = document.getElementById('commentText').value.trim();
+                
+                if (!rating || !text) {
+                    this.showAlert('يرجى إضافة التقييم ونص التعليق', 'danger');
+                    return;
+                }
+                
+                if (text.length < 10) {
+                    this.showAlert('يرجى كتابة تعليق مفيد أكثر (على الأقل 10 أحرف)', 'warning');
+                    return;
+                }
+                
+                let displayName = 'مجهول';
+                let name = 'مجهول';
+                let email = '';
+                
+                switch(identity) {
+                    case 'anonymous':
+                        displayName = 'مجهول';
+                        name = 'مجهول';
+                        break;
+                        
+                    case 'google':
+                        if (!this.currentUser?.provider === 'google') {
+                            this.showAlert('يرجى تسجيل الدخول باستخدام Google أولاً', 'warning');
+                            return;
+                        }
+                        displayName = this.currentUser.name;
+                        name = this.currentUser.name;
+                        email = this.currentUser.email;
+                        break;
+                        
+                    case 'named':
+                        const userName = document.getElementById('commentName').value.trim();
+                        if (!userName) {
+                            this.showAlert('يرجى إدخال اسمك عند اختيار "بالاسم"', 'warning');
+                            return;
+                        }
+                        displayName = userName;
+                        name = userName;
+                        email = document.getElementById('commentEmail').value.trim() || '';
+                        break;
+                }
+                
+                const newComment = {
+                    id: Date.now(),
+                    identity: identity,
+                    name: name,
+                    displayName: displayName,
+                    email: email,
+                    rating: parseInt(rating),
+                    text: text,
+                    date: new Date().toISOString()
+                };
+                
+                this.comments.push(newComment);
+                this.saveComments();
+                this.displayComments();
+                this.updateStats();
+                
+                // إعادة تعيين النموذج
+                document.getElementById('commentForm').reset();
+                document.getElementById('anonymousDetails').classList.add('active');
+                document.getElementById('googleDetails').classList.remove('active');
+                document.getElementById('namedDetails').classList.remove('active');
+                
+                // عرض رسالة نجاح
+                this.showAlert('شكراً لك! تم إرسال تعليقك بنجاح', 'success');
+                
+                // إظهار التعليقات تلقائياً بعد إضافة تعليق جديد
+                this.showComments();
+                
+                // تمرير سلس إلى قسم التعليقات
+                setTimeout(() => {
+                    document.querySelector('.comments-section').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 500);
+            }
+            
+            getAverageRating() {
+                if (this.comments.length === 0) return "0.0";
+                const sum = this.comments.reduce((total, comment) => total + comment.rating, 0);
+                return (sum / this.comments.length).toFixed(1);
+            }
+            
+            getTodayComments() {
+                const today = new Date().toDateString();
+                return this.comments.filter(comment => {
+                    const commentDate = new Date(comment.date).toDateString();
+                    return commentDate === today;
+                }).length;
+            }
+            
+            updateStats() {
+                document.getElementById('totalComments').textContent = this.comments.length;
+                document.getElementById('averageRating').textContent = this.getAverageRating();
+                document.getElementById('todayComments').textContent = this.getTodayComments();
+            }
+            
+            showAlert(message, type) {
+                const existingAlert = document.querySelector('.alert[role="alert"]');
+                if (existingAlert) existingAlert.remove();
+                
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+                alertDiv.setAttribute('role', 'alert');
+                alertDiv.innerHTML = `
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                
+                const commentsSection = document.querySelector('.comments-section');
+                commentsSection.prepend(alertDiv);
+                
+                setTimeout(() => {
+                    if (alertDiv.parentElement) {
+                        alertDiv.remove();
+                    }
+                }, 5000);
+            }
+        }
+        
+        // تهيئة كل شيء بعد تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            window.telegramManager = new TelegramManager();
+            window.commentsManager = new CommentsManager();
+        });
+    </script>
+</body>
+</html>

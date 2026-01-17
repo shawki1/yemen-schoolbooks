@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المادة الدراسية - المنصة التعليمية اليمنية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #764ba2;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+        
+        .subject-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .chapter-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #f1f1f1;
+            transition: all 0.3s ease;
+        }
+        
+        .lesson-item:hover {
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+        
+        .lesson-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e3f2fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            color: #2563eb;
+        }
+        
+        .progress-small {
+            width: 80px;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-small .progress-bar {
+            background: #2563eb;
+            height: 100%;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #495057;
+            font-weight: 600;
+            border: none;
+            padding: 1rem 1.5rem;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: none;
+            border: none;
+            border-bottom: 3px solid #2563eb;
+            color: #2563eb;
+        }
+        
+        .book-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .book-cover {
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .book-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .book-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: #2563eb;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .book-type-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .book-main-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .book-cover-large {
+            width: 150px;
+            height: 200px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+        
+        .book-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .book-actions .btn {
+            flex: 1;
+        }
+        
+        .footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+        }
+        
+        .breadcrumb-item a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            color: white;
+        }
+        
+        .progress-ring-small {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .progress-text-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-graduation-cap me-2"></i>
+                المنصة التعليمية اليمنية
+            </a>
+            <a href="grades.html" class="btn btn-outline-light">
+                <i class="fas fa-arrow-right me-1"></i> العودة للمواد
+            </a>
+        </div>
+    </nav>
+
+    <!-- رأس المادة -->
+    <div class="subject-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../index.html" class="text-white">الرئيسية</a></li>
+                            <li class="breadcrumb-item"><a href="grades.html" class="text-white">المستويات</a></li>
+                            <li class="breadcrumb-item text-white" id="subjectBreadcrumb">المادة</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-5 fw-bold" id="subjectTitle">المادة الدراسية</h1>
+                    <p class="lead mb-0" id="subjectDescription">وصف المادة الدراسية</p>
+                </div>
+                <div class="col-md-4 text-start">
+                    <div class="subject-progress text-center">
+                        <div class="progress-ring-small">
+                            <div class="progress-text-small">0%</div>
+                        </div>
+                        <p class="mb-0 mt-2">التقدم العام</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- التنقل بين أقسام المادة -->
+        <ul class="nav nav-tabs mb-4" id="subjectTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#lessons">
+                    <i class="fas fa-play-circle me-2"></i>الدروس
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#books">
+                    <i class="fas fa-book me-2"></i>الكتب
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#exams">
+                    <i class="fas fa-file-alt me-2"></i>الاختبارات
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#resources">
+                    <i class="fas fa-download me-2"></i>الموارد
+                </a>
+            </li>
+        </ul>
+
+        <!-- محتوى التبويبات -->
+        <div class="tab-content">
+            <!-- تبويب الدروس -->
+            <div class="tab-pane fade show active" id="lessons">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-4">📚 فصول المادة</h3>
+                        
+                        <!-- الفصل الأول -->
+                        <div class="chapter-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="mb-0">الفصل الأول: المدخل إلى المادة</h4>
+                                <span class="badge bg-primary">5 دروس</span>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" style="width: 40%">40% مكتمل</div>
+                            </div>
+                            
+                            <div class="lessons-list">
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">مقدمة في المادة</h6>
+                                        <p class="text-muted mb-0">تعريف بالمادة وأهميتها</p>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="text-muted">15:30</span>
+                                        <button class="btn btn-sm btn-primary">
+                                            <i class="fas fa-play me-1"></i> تشغيل
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">المفاهيم الأساسية</h6>
+                                        <p class="text-muted mb-0">المفاهيم والمصطلحات الأساسية</p>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="text-muted">20:15</span>
+                                        <button class="btn btn-sm btn-primary">
+                                            <i class="fas fa-play me-1"></i> تشغيل
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="lesson-item">
+                                    <div class="lesson-icon text-success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">التطبيقات العملية</h6>
+                                        <p class="text-muted mb-0">أمثلة وتطبيقات عملية</p>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="text-muted">25:40</span>
+                                        <span class="badge bg-success">مكتمل</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الفصل الثاني -->
+                        <div class="chapter-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="mb-0">الفصل الثاني: المستوى المتوسط</h4>
+                                <span class="badge bg-warning">8 دروس</span>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" style="width: 20%">20% مكتمل</div>
+                            </div>
+                            
+                            <div class="lessons-list">
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">الموضوع المتقدم الأول</h6>
+                                        <p class="text-muted mb-0">شرح متقدم للموضوع</p>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="text-muted">30:00</span>
+                                        <span class="badge bg-secondary">مقفل</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب الكتب -->
+            <div class="tab-pane fade" id="books">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-4">📖 الكتب والمراجع</h3>
+                        
+                        <!-- الكتاب الرئيسي للمادة -->
+                        <div class="book-main-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-3 text-center">
+                                    <div class="book-cover-large" id="mainBookCover">
+                                        📘
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h3 id="mainBookTitle">كتاب المادة الدراسية</h3>
+                                    <p class="mb-3" id="mainBookDescription">الكتاب المدرسي الرسمي المعتمد من الوزارة</p>
+                                    
+                                    <div class="book-stats text-white">
+                                        <div class="stat">
+                                            <span class="stat-value" id="mainBookPages">95</span>
+                                            <span class="stat-label">صفحة</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value" id="mainBookSize">12MB</span>
+                                            <span class="stat-label">الحجم</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value" id="mainBookDownloads">380</span>
+                                            <span class="stat-label">تحميل</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-value" id="mainBookType">pdf</span>
+                                            <span class="stat-label">النوع</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="book-actions">
+                                        <button class="btn btn-light btn-lg" onclick="subjectManager.downloadMainBook()">
+                                            <i class="fas fa-download me-2"></i> تحميل الكتاب
+                                        </button>
+                                        <button class="btn btn-outline-light btn-lg" onclick="subjectManager.previewMainBook()">
+                                            <i class="fas fa-eye me-2"></i> معاينة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الكتب الإضافية -->
+                        <h4 class="mb-3">📚 كتب ومراجع إضافية</h4>
+                        <div class="row" id="subjectBooksGrid">
+                            <!-- سيتم تعبئة الكتب الإضافية ديناميكياً من JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب الاختبارات -->
+            <div class="tab-pane fade" id="exams">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-4">📝 اختبارات المادة</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="chapter-card">
+                                    <h5>اختبار الفصل الأول</h5>
+                                    <p class="text-muted">اختبار شامل لفصل المدخل إلى المادة</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="badge bg-success">متاح</span>
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fas fa-play me-1"></i> بدء الاختبار
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="chapter-card">
+                                    <h5>اختبار منتصف الفصل</h5>
+                                    <p class="text-muted">اختبار تغطي الفصول 1-3</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="badge bg-warning">قادم</span>
+                                        <button class="btn btn-outline-secondary btn-sm" disabled>
+                                            <i class="fas fa-clock me-1"></i> قريباً
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب الموارد -->
+            <div class="tab-pane fade" id="resources">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-4">📎 موارد إضافية</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <div class="resource-card">
+                                    <i class="fas fa-video fa-2x text-primary mb-3"></i>
+                                    <h6>فيديوهات إضافية</h6>
+                                    <small class="text-muted">شروحات إضافية</small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 mb-3">
+                                <div class="resource-card">
+                                    <i class="fas fa-images fa-2x text-success mb-3"></i>
+                                    <h6>صور توضيحية</h6>
+                                    <small class="text-muted">رسوم ومخططات</small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 mb-3">
+                                <div class="resource-card">
+                                    <i class="fas fa-link fa-2x text-warning mb-3"></i>
+                                    <h6>روابط مفيدة</h6>
+                                    <small class="text-muted">مواقع تعليمية</small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 mb-3">
+                                <div class="resource-card">
+                                    <i class="fas fa-question-circle fa-2x text-info mb-3"></i>
+                                    <h6>أسئلة شائعة</h6>
+                                    <small class="text-muted">استفسارات الطلاب</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="text-center mb-0">جميع الحقوق محفوظة © المنصة التعليمية اليمنية 2024</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // بيانات الكتب الكاملة للصفوف من الأول إلى الرابع
+        const booksData = [
+            // كتب القرآن الكريم
+            {
+                id: 1,
+                title: "قرآن كريم - الصف الأول",
+                description: "الكتاب المدرسي الرسمي لمادة القرآن الكريم",
+                cover: "📗",
+                grade: 1,
+                subject: "quran",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/quran.pdf",
+                fileName: "قرآن كريم - الصف الأول.pdf"
+            },
+            {
+                id: 2,
+                title: "قرآن كريم - الصف الثاني",
+                description: "الكتاب المدرسي الرسمي لمادة القرآن الكريم",
+                cover: "📗",
+                grade: 2,
+                subject: "quran",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/quran.pdf",
+                fileName: "قرآن كريم - الصف الثاني.pdf"
+            },
+            {
+                id: 3,
+                title: "قرآن كريم - الصف الثالث",
+                description: "الكتاب المدرسي الرسمي لمادة القرآن الكريم",
+                cover: "📗",
+                grade: 3,
+                subject: "quran",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/quran.pdf",
+                fileName: "قرآن كريم - الصف الثالث.pdf"
+            },
+            {
+                id: 4,
+                title: "قرآن كريم - الصف الرابع",
+                description: "الكتاب المدرسي الرسمي لمادة القرآن الكريم",
+                cover: "📗",
+                grade: 4,
+                subject: "quran",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/quran.pdf",
+                fileName: "قرآن كريم - الصف الرابع.pdf"
+            },
+            
+            // كتب التربية الإسلامية
+            {
+                id: 5,
+                title: "التربية الإسلامية - الصف الأول",
+                description: "الكتاب المدرسي الرسمي لمادة التربية الإسلامية",
+                cover: "📘",
+                grade: 1,
+                subject: "islamic",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/islamic.pdf",
+                fileName: "التربية الإسلامية - الصف الأول.pdf"
+            },
+            {
+                id: 6,
+                title: "التربية الإسلامية - الصف الثاني",
+                description: "الكتاب المدرسي الرسمي لمادة التربية الإسلامية",
+                cover: "📘",
+                grade: 2,
+                subject: "islamic",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/islamic.pdf",
+                fileName: "التربية الإسلامية - الصف الثاني.pdf"
+            },
+            {
+                id: 7,
+                title: "التربية الإسلامية - الصف الثالث",
+                description: "الكتاب المدرسي الرسمي لمادة التربية الإسلامية",
+                cover: "📘",
+                grade: 3,
+                subject: "islamic",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/islamic.pdf",
+                fileName: "التربية الإسلامية - الصف الثالث.pdf"
+            },
+            {
+                id: 8,
+                title: "التربية الإسلامية - الصف الرابع",
+                description: "الكتاب المدرسي الرسمي لمادة التربية الإسلامية",
+                cover: "📘",
+                grade: 4,
+                subject: "islamic",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/islamic.pdf",
+                fileName: "التربية الإسلامية - الصف الرابع.pdf"
+            },
+            
+            // كتب اللغة العربية
+            {
+                id: 9,
+                title: "اللغة العربية - الصف الأول",
+                description: "الكتاب المدرسي الرسمي لمادة اللغة العربية",
+                cover: "📙",
+                grade: 1,
+                subject: "arabic",
+                pages: 120,
+                size: "15MB",
+                type: "pdf",
+                downloads: 450,
+                fileUrl: "../books/arabic.pdf",
+                fileName: "اللغة العربية - الصف الأول.pdf"
+            },
+            {
+                id: 10,
+                title: "اللغة العربية - الصف الثاني",
+                description: "الكتاب المدرسي الرسمي لمادة اللغة العربية",
+                cover: "📙",
+                grade: 2,
+                subject: "arabic",
+                pages: 120,
+                size: "15MB",
+                type: "pdf",
+                downloads: 450,
+                fileUrl: "../books/arabic.pdf",
+                fileName: "اللغة العربية - الصف الثاني.pdf"
+            },
+            {
+                id: 11,
+                title: "اللغة العربية - الصف الثالث",
+                description: "الكتاب المدرسي الرسمي لمادة اللغة العربية",
+                cover: "📙",
+                grade: 3,
+                subject: "arabic",
+                pages: 120,
+                size: "15MB",
+                type: "pdf",
+                downloads: 450,
+                fileUrl: "../books/arabic.pdf",
+                fileName: "اللغة العربية - الصف الثالث.pdf"
+            },
+            {
+                id: 12,
+                title: "اللغة العربية - الصف الرابع",
+                description: "الكتاب المدرسي الرسمي لمادة اللغة العربية",
+                cover: "📙",
+                grade: 4,
+                subject: "arabic",
+                pages: 120,
+                size: "15MB",
+                type: "pdf",
+                downloads: 450,
+                fileUrl: "../books/arabic.pdf",
+                fileName: "اللغة العربية - الصف الرابع.pdf"
+            },
+            
+            // كتب الرياضيات
+            {
+                id: 13,
+                title: "الرياضيات - الصف الأول",
+                description: "كتاب الرياضيات مع تمارين وأنشطة تفاعلية",
+                cover: "📕",
+                grade: 1,
+                subject: "math",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/math.pdf",
+                fileName: "الرياضيات - الصف الأول.pdf"
+            },
+            {
+                id: 14,
+                title: "الرياضيات - الصف الثاني",
+                description: "كتاب الرياضيات مع تمارين وأنشطة تفاعلية",
+                cover: "📕",
+                grade: 2,
+                subject: "math",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/math.pdf",
+                fileName: "الرياضيات - الصف الثاني.pdf"
+            },
+            {
+                id: 15,
+                title: "الرياضيات - الصف الثالث",
+                description: "كتاب الرياضيات مع تمارين وأنشطة تفاعلية",
+                cover: "📕",
+                grade: 3,
+                subject: "math",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/math.pdf",
+                fileName: "الرياضيات - الصف الثالث.pdf"
+            },
+            {
+                id: 16,
+                title: "الرياضيات - الصف الرابع",
+                description: "كتاب الرياضيات مع تمارين وأنشطة تفاعلية",
+                cover: "📕",
+                grade: 4,
+                subject: "math",
+                pages: 95,
+                size: "12MB",
+                type: "pdf",
+                downloads: 380,
+                fileUrl: "../books/math.pdf",
+                fileName: "الرياضيات - الصف الرابع.pdf"
+            },
+            
+            // كتب العلوم
+            {
+                id: 17,
+                title: "العلوم - الصف الأول",
+                description: "استكشاف عالم العلوم والطبيعة",
+                cover: "📒",
+                grade: 1,
+                subject: "science",
+                pages: 110,
+                size: "18MB",
+                type: "pdf",
+                downloads: 290,
+                fileUrl: "../books/science.pdf",
+                fileName: "العلوم - الصف الأول.pdf"
+            },
+            {
+                id: 18,
+                title: "العلوم - الصف الثاني",
+                description: "استكشاف عالم العلوم والطبيعة",
+                cover: "📒",
+                grade: 2,
+                subject: "science",
+                pages: 110,
+                size: "18MB",
+                type: "pdf",
+                downloads: 290,
+                fileUrl: "../books/science.pdf",
+                fileName: "العلوم - الصف الثاني.pdf"
+            },
+            {
+                id: 19,
+                title: "العلوم - الصف الثالث",
+                description: "استكشاف عالم العلوم والطبيعة",
+                cover: "📒",
+                grade: 3,
+                subject: "science",
+                pages: 110,
+                size: "18MB",
+                type: "pdf",
+                downloads: 290,
+                fileUrl: "../books/science.pdf",
+                fileName: "العلوم - الصف الثالث.pdf"
+            },
+            {
+                id: 20,
+                title: "العلوم - الصف الرابع",
+                description: "استكشاف عالم العلوم والطبيعة",
+                cover: "📒",
+                grade: 4,
+                subject: "science",
+                pages: 110,
+                size: "18MB",
+                type: "pdf",
+                downloads: 290,
+                fileUrl: "../books/science.pdf",
+                fileName: "العلوم - الصف الرابع.pdf"
+            }
+        ];
+
+        class BooksManager {
+    constructor() {
+        this.books = booksData;
+        this.filteredBooks = [...this.books];
+        this.init();
+    }
+
+    init() {
+        this.displayBooks();
+        this.setupFilters();
+    }
+
+    displayBooks() {
+        const grid = document.getElementById('booksGrid');
+        
+        if (!grid) {
+            console.error('❌ لم يتم العثور على عنصر booksGrid');
+            return;
+        }
+        
+        grid.innerHTML = this.filteredBooks.map(book => `
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card book-card">
+                    <div class="book-cover">
+                        ${book.cover}
+                    </div>
+                    <span class="book-badge">${book.type.toUpperCase()}</span>
+                    <div class="card-body">
+                        <h5 class="card-title">${book.title}</h5>
+                        <p class="card-text">${book.description}</p>
+                        
+                        <div class="book-stats">
+                            <div class="stat">
+                                <span class="stat-value">${book.pages}</span>
+                                <span class="stat-label">صفحة</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">${book.size}</span>
+                                <span class="stat-label">الحجم</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">${book.downloads}</span>
+                                <span class="stat-label">تحميل</span>
+                            </div>
+                        </div>
+                        
+                        <div class="book-actions">
+                            <button class="btn btn-primary flex-fill" onclick="booksManager.downloadBook(${book.id})">
+                                <i class="fas fa-download me-1"></i> تحميل
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="booksManager.previewBook(${book.id})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // ✅ الطريقة البسيطة والفعالة للتحميل
+    downloadBook(bookId) {
+        const book = this.books.find(b => b.id === bookId);
+        
+        if (book) {
+            console.log('🚀 جاري تحميل:', book.fileUrl);
+            
+            // زيادة عداد التحميلات
+            book.downloads++;
+            this.displayBooks(); // تحديث العداد
+            
+            // الطريقة البسيطة المباشرة - نفس التي جربتها
+            const downloadLink = document.createElement('a');
+            downloadLink.href = book.fileUrl;
+            downloadLink.download = book.fileName;
+            
+            // إضافة العنصر للصفحة والنقر عليه
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            // عرض رسالة نجاح
+            this.showSuccessMessage(`تم تحميل "${book.title}" بنجاح`);
+        } else {
+            this.showErrorMessage('الكتاب غير متوفر حالياً');
+        }
+    }
+
+    // معاينة الكتاب
+    previewBook(bookId) {
+        const book = this.books.find(b => b.id === bookId);
+        if (book) {
+            // افتح الملف في نافذة جديدة للمعاينة
+            window.open(book.fileUrl, '_blank');
+        }
+    }
+
+    // عرض رسالة نجاح بسيطة
+    showSuccessMessage(message) {
+        alert('✅ ' + message);
+    }
+
+    // عرض رسالة خطأ بسيطة  
+    showErrorMessage(message) {
+        alert('❌ ' + message);
+    }
+
+    setupFilters() {
+        const gradeFilter = document.getElementById('gradeFilter');
+        const subjectFilter = document.getElementById('subjectFilter');
+        const searchInput = document.getElementById('searchInput');
+
+        if (gradeFilter) {
+            gradeFilter.addEventListener('change', () => this.filterBooks());
+        }
+        if (subjectFilter) {
+            subjectFilter.addEventListener('change', () => this.filterBooks());
+        }
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => this.searchBooks(e.target.value));
+        }
+    }
+
+    filterBooks() {
+        const gradeFilter = document.getElementById('gradeFilter')?.value || '';
+        const subjectFilter = document.getElementById('subjectFilter')?.value || '';
+        const searchInput = document.getElementById('searchInput');
+        const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
+
+        this.filteredBooks = this.books.filter(book => {
+            const gradeMatch = !gradeFilter || book.grade == gradeFilter;
+            const subjectMatch = !subjectFilter || book.subject === subjectFilter;
+            const searchMatch = !searchQuery || 
+                book.title.toLowerCase().includes(searchQuery) ||
+                book.description.toLowerCase().includes(searchQuery);
+            
+            return gradeMatch && subjectMatch && searchMatch;
+        });
+
+        this.displayBooks();
+    }
+
+    searchBooks(query) {
+        this.filterBooks();
+    }
+}
+
+// إضافة CSS إضافي للكتب
+const booksCSS = `
+.book-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    height: 100%;
+}
+.book-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+.book-cover {
+    height: 250px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 4rem;
+}
+.book-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #10b981;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+.book-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+.stat {
+    text-align: center;
+}
+.stat-value {
+    font-weight: bold;
+    color: #2563eb;
+    display: block;
+}
+.stat-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+.book-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+`;
+
+// إضافة الـ CSS للصفحة
+const styleSheet = document.createElement('style');
+styleSheet.textContent = booksCSS;
+document.head.appendChild(styleSheet);
+
+// تهيئة المدير بعد تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    window.booksManager = new BooksManager();
+});
